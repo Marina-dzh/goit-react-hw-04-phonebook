@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import "yup-phone";
 import PropTypes from 'prop-types';
 import { Input,Error, Button } from "./Form.styled";
-import React, { Component } from "react";
+
 
 
 const initialValues = {
@@ -16,19 +16,11 @@ const schema = yup.object().shape({
 number:yup.string().required().phone('UA', true, `phone number must be 9 digits and can contain spaces, dashes, parentheses and can start with "+380" or "0" `)
 })
 
-export class ContactForm extends Component  {
-static propTypes = {addContact: PropTypes.func,}
-
-    state = {
-         name: '',
-        number: ''
-    }
-   
-    render() {
+export const  ContactForm=({addContact})=>  {
 
     const  handleSubmit = (values, {resetForm}) => {
-    
-this.props.addContact(values)
+    console.log(values)
+addContact(values)
         resetForm()
         
     }
@@ -58,7 +50,7 @@ this.props.addContact(values)
         <Button type="subbmit" >Add contact</Button>
            </Form></Formik>
        )
-   }  }
+   }  
 
 Formik.propTypes = {
     onSubmit: PropTypes.func,
