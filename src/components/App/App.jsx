@@ -23,12 +23,33 @@ const savedContacts = localStorage.getItem('contacts')
       return initialContacts
     }}
 
+
+
 export const App = () => {
   
   const [contacts, setContacts] = useState(localContacts())
   const [filter, setFilter] = useState("")
-const [filteredCon, setFilteredCon] = useState()
- 
+  const [filteredCon, setFilteredCon] = useState()
+
+
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts))
+  }
+  )
+
+  useEffect(
+    () => {
+    if (!filter) {
+      setFilteredCon(null)
+      return
+  }
+      const normFilter = filter.toLowerCase();
+      setFilteredCon(contacts.filter(contact => contact.name.toLowerCase().includes(normFilter)))
+    },
+[filter,contacts]
+
+  )
+
   const addContact = ({ name, number }) => {
     for (const item of contacts) {
       if (item.name === name & item.number===number) {
@@ -38,51 +59,24 @@ const [filteredCon, setFilteredCon] = useState()
           position: "top-left",
           style: {
             color: "black",
-        backgroundColor:"#ffa500"  }
-          
+        backgroundColor:"#ffa500"  } 
 });
         return
-    }
-    }
+    }}
       
     setContacts( pState => [...pState, { name, id:nanoid(), number  }]);
 
   }
 
   const changeFilter = (e) => {
-    
     setFilter(e.currentTarget.value)
-    
-    
   }
+
   const deleteContact = (id) => {
-
     setContacts(pState => pState.filter(contact=>contact.id !==(id)))
-    
   }
   
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts))
-  }
-  )
- 
-
-  useEffect(
-    () => {
-    if (!filter) {
-      setFilteredCon(null)
-      return
-  }
-    
-      const normFilter = filter.toLowerCase();
-      
-      setFilteredCon(contacts.filter(contact => contact.name.toLowerCase().includes(normFilter)))
   
-    },
-[filter,contacts]
-
-  )
-
  
     return (
       <Container>
