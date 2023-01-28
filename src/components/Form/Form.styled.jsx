@@ -10,7 +10,7 @@ border: 1px solid;
    }
 `
 export const Error= styled(ErrorMessage)`
-    background-color:orange;
+    background-color: #ffa500;
     border-radius: 4px;
     font-size: 12px;
     width: fit-content;
@@ -27,7 +27,7 @@ border: 1px solid;
     background-color:orange;
  }
   :focus{
-       color: white;
+       color: #ffffff;
     }
     
 `

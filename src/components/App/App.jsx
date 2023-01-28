@@ -6,6 +6,7 @@ import { ContactForm } from "../Form/Form";
 import { ContactList } from "../List/List";
 import { Container } from "./App.styled";
 import { useState } from "react";
+import { Toaster, toast } from 'react-hot-toast';
 
 const initialContacts = [{id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
     {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
@@ -31,7 +32,15 @@ const [filteredCon, setFilteredCon] = useState()
   const addContact = ({ name, number }) => {
     for (const item of contacts) {
       if (item.name === name & item.number===number) {
-        alert(`Oooops, it seems like ${name} is already in contacts. `)
+        // alert(`Oooops, it seems like ${name} is already in contacts. `)
+        toast(`Oooops, it seems like ${name} is already in contacts. `, {
+          icon: '⚠️',
+          position: "top-left",
+          style: {
+            color: "black",
+        backgroundColor:"#ffa500"  }
+          
+});
         return
     }
     }
@@ -82,8 +91,10 @@ const [filteredCon, setFilteredCon] = useState()
         <h2>Contacts</h2>
         { (contacts.length!==0) && <ContactList contacts={filteredCon||contacts} filter={filter} changeFilter={changeFilter} deleteContact={deleteContact} /> }
         {(!contacts.length) && <p style={{ fontSize:14,  }}>The PhoneBook is empty!</p>}
-        {(filteredCon && filteredCon.length===0)&& <p style={{ fontSize:14,  }}>There is no result</p> }
-        </Container >
+        {(filteredCon && filteredCon.length === 0) && <p style={{ fontSize: 14, }}>There is no result</p>}
+        <Toaster  toastOptions={{duration: 2000} }/>
+      </Container >
+      
     )
 
 }
