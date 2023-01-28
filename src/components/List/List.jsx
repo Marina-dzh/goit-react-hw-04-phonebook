@@ -1,4 +1,4 @@
-import { Filter } from "./Filter"
+import { Filter } from "../Filter/Filter"
 import { List, Item, Number, Button } from "./List.styled"
 import PropTypes from 'prop-types';
 

@@ -2,8 +2,8 @@
 
 import { nanoid } from "nanoid";
 import React, { useEffect } from "react";
-import { ContactForm } from "./Form";
-import { ContactList } from "./List";
+import { ContactForm } from "../Form/Form";
+import { ContactList } from "../List/List";
 import { Container } from "./App.styled";
 import { useState } from "react";
 
